@@ -1,0 +1,101 @@
+@use './variables.scss' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  color: var(--body-text);
+  background-color: var(--body-bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  transition: background-color $transition-base, color $transition-base;
+}
+
+input[type='checkbox'],
+input[type='radio'],
+input[type='range'] {
+  accent-color: $color-primary;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+#app {
+  min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ==================== Shared Component Styles ==================== */
+
+/* Form Elements */
+.form-field {
+  margin-bottom: $spacing-lg;
+}
+
+.form-label {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: var(--label-color);
+  margin-bottom: $spacing-sm;
+}
+
+/* ==================== Theme Variables ==================== */
+
+/* Light theme variables */
+:root.light-theme {
+  --body-bg: #{$color-gray-50};
+  --body-text: #{$color-gray-900};
+  --card-bg: #{$color-white};
+  --card-border: #{$color-gray-200};
+  --input-bg: #{$color-white};
+  --input-border: #{$color-gray-300};
+  --input-text: #{$color-gray-900};
+  --input-placeholder: #{$color-gray-500};
+  --label-color: #{$color-gray-700};
+  --divider-color: #{$color-gray-200};
+  --title-color: #{$color-gray-900};
+}
+
+/* Dark theme variables */
+:root.dark-theme {
+  --body-bg: #0f172a;
+  --body-text: #f1f5f9;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --input-bg: #0f172a;
+  --input-border: #475569;
+  --input-text: #f1f5f9;
+  --input-placeholder: #94a3b8;
+  --label-color: #cbd5e0;
+  --divider-color: #334155;
+  --title-color: #f1f5f9;
+}
+

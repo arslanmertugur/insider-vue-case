@@ -1,0 +1,42 @@
+services:
+  # Development service
+  toast-dev:
+    build:
+      context: .
+      target: development
+      dockerfile: Dockerfile
+    container_name: insider-toast-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      # Mount source code for hot reload
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./index.html:/app/index.html
+      - ./vite.config.ts:/app/vite.config.ts
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./tsconfig.app.json:/app/tsconfig.app.json
+      - ./package.json:/app/package.json
+      # Exclude node_modules from volume mount
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - toast-network
+
+  # Production service
+  toast-prod:
+    build:
+      context: .
+      target: production
+      dockerfile: Dockerfile
+    container_name: insider-toast-prod
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - toast-network
+
+networks:
+  toast-network:
+    driver: bridge

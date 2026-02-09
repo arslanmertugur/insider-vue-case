@@ -1,0 +1,156 @@
+@use './variables.scss' as *;
+
+/* ==================== Shared Mixins ==================== */
+
+@mixin panel {
+  background: var(--card-bg);
+  padding: $spacing-lg;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  transition: background $transition-base, border-color $transition-base;
+}
+
+@mixin base-button {
+  height: 2.25rem;
+  padding: 0 0.75rem;
+  border: 2px solid var(--card-border);
+  border-radius: $radius-md;
+  background: var(--card-bg);
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: var(--body-text);
+  transition: all $transition-base;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  @include mobile {
+    height: 2.75rem; // 44px minimum touch target
+    font-size: $font-size-base;
+  }
+
+  &:hover {
+    border-color: var(--input-border);
+  }
+}
+
+@mixin primary-button {
+  height: 2.25rem;
+  padding: 0 $spacing-md;
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background $transition-base;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mobile {
+    height: 2.75rem; // 44px minimum touch target
+  }
+
+  &:hover {
+    background: #4f46e5;
+  }
+}
+
+@mixin form-input {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid var(--input-border);
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  color: var(--input-text);
+  background: var(--input-bg);
+  transition: border-color $transition-base, background $transition-base, color $transition-base;
+
+  &::placeholder {
+    color: var(--input-placeholder);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-sm;
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@mixin grid-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-sm;
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@mixin color-input-container {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+}
+
+@mixin color-input-picker {
+  width: 2.375rem;
+  height: 3rem;
+  border: 1px solid var(--input-border);
+  border-radius: $radius-md;
+  cursor: pointer;
+  background: transparent;
+  overflow: hidden;
+
+  // Make the color picker itself rounded
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: $radius-md;
+  }
+
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: $radius-md;
+  }
+
+  // Firefox
+  &::-moz-color-swatch {
+    border: none;
+    border-radius: $radius-md;
+  }
+}
+
+@mixin color-input-text {
+  flex: 1;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid var(--input-border);
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  color: var(--input-text);
+  background: var(--input-bg);
+  font-family: monospace;
+  transition: all $transition-base;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+}
